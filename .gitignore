@@ -1,0 +1,39 @@
+# ── User Requested Exclusions ───────────────────────────────────────────────
+INTERVIEW_PREPARATION.md
+PROJECT_REPORT.md
+
+# ── Environment & Secrets (DO NOT COMMIT) ───────────────────────────────────
+.env
+.env.local
+*.env
+
+# ── Python Virtual Environments ─────────────────────────────────────────────
+.venv/
+venv/
+ENV/
+env/
+
+# ── Python Caches & Bytecode ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# ── Media Downloads & Temporary Audio ───────────────────────────────────────
+downloades/
+*.wav
+*.mp3
+*.mp4
+*.m4a
+*.webm
+file.txt
+
+# ── Chroma Vector Database Storage ──────────────────────────────────────────
+vector_db/
+
+# ── IDE & OS metadata ───────────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
