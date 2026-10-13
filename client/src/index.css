@@ -1,0 +1,307 @@
+/**
+ * ===================================================================================
+ * FILE: client/src/index.css
+ * PURPOSE:
+ *   Core Design System and Global Styles for the RecapAI React Application.
+ * 
+ * ROLE IN MERN ARCHITECTURE:
+ *   Provides the visual presentation layer for the React frontend:
+ *     - Cohesive cyberpunk/dark aesthetic matching the AI theme.
+ *     - Custom CSS variables for centralized theme tokens (colors, radii, surfaces).
+ *     - Layout classes for the multi-pane dashboard (Sidebar, Main Content, Chat).
+ *     - Interactive micro-animations for buttons, cards, badges, and chat bubbles.
+ * 
+ * INTERVIEW HIGHLIGHT:
+ *   Demonstrates clean Vanilla CSS design without external heavy frameworks,
+ *   maintaining full control over performance, rendering, and responsive behavior.
+ * ===================================================================================
+ */
+
+/* Import Google Fonts: Syne for futuristic headings and JetBrains Mono for clean code/body */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@500;600;700;800&display=swap');
+
+/* -----------------------------------------------------------------------------------
+ * DESIGN TOKENS & ROOT VARIABLES
+ * ----------------------------------------------------------------------------------- */
+:root {
+  /* Dark background palette */
+  --bg-primary: #0a0a0f;
+  --bg-surface: #111118;
+  --bg-surface-elevated: #1a1a26;
+  --bg-surface-hover: #222232;
+
+  /* Borders & Dividers */
+  --border-subtle: #242436;
+  --border-focus: #7c3aed;
+
+  /* Accent Colors */
+  --accent-purple: #7c3aed;
+  --accent-purple-glow: #9f67ff;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-rose: #f43f5e;
+
+  /* Typography Colors */
+  --text-main: #f1f1f8;
+  --text-muted: #7e7e9e;
+  --text-dimmed: #52526c;
+
+  /* Sizing and Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+/* -----------------------------------------------------------------------------------
+ * GLOBAL RESETS & TYPOGRAPHY
+ * ----------------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle background grid pattern for modern AI aesthetic */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+  background-size: 36px 36px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3, h4, .brand-font {
+  font-family: 'Syne', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* -----------------------------------------------------------------------------------
+ * APP LAYOUT CONTAINER
+ * ----------------------------------------------------------------------------------- */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left Sidebar: Meeting history & branding */
+.sidebar {
+  width: 300px;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* Main Content Area */
+.main-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 100%;
+  padding: 2rem;
+}
+
+/* -----------------------------------------------------------------------------------
+ * CARD & SURFACE STYLES
+ * ----------------------------------------------------------------------------------- */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  border-color: rgba(124, 58, 237, 0.4);
+}
+
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-body {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* -----------------------------------------------------------------------------------
+ * BADGES & TAGS
+ * ----------------------------------------------------------------------------------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-purple {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--accent-purple-glow);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+.badge-cyan {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.badge-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-amber {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--accent-amber);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* -----------------------------------------------------------------------------------
+ * BUTTONS & INPUT ELEMENTS
+ * ----------------------------------------------------------------------------------- */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-purple), #5b21b6);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.4rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.95;
+  box-shadow: 0 0 16px rgba(124, 58, 237, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-field {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+
+.input-field:focus {
+  border-color: var(--accent-purple);
+  box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
+}
+
+/* -----------------------------------------------------------------------------------
+ * CHAT COMPONENTS (RAG INTERACTION)
+ * ----------------------------------------------------------------------------------- */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 0.75rem 1.1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.chat-bubble-user {
+  align-self: flex-end;
+  background: rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  color: var(--text-main);
+}
+
+.chat-bubble-bot {
+  align-self: flex-start;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  color: var(--text-main);
+}
+
+/* -----------------------------------------------------------------------------------
+ * SCROLLBARS
+ * ----------------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-purple);
+}

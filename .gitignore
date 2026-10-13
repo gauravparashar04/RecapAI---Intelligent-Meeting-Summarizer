@@ -1,6 +1,7 @@
 # ── User Requested Exclusions ───────────────────────────────────────────────
 INTERVIEW_PREPARATION.md
 PROJECT_REPORT.md
+MERN_IMPLEMENTATION_REPORT.md
 
 # ── Environment & Secrets (DO NOT COMMIT) ───────────────────────────────────
 .env
@@ -31,6 +32,11 @@ file.txt
 
 # ── Chroma Vector Database Storage ──────────────────────────────────────────
 vector_db/
+
+# ── Node.js & Frontend dependencies ─────────────────────────────────────────
+node_modules/
+dist/
+.npm/
 
 # ── IDE & OS metadata ───────────────────────────────────────────────────────
 .vscode/
